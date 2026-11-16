@@ -4,16 +4,16 @@
 [![rank](https://make.fun/badge/tiny-chess-01/Rudhay863/tiny-chess-01-v2/rank.svg)](https://make.fun/bounty/tiny-chess-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
 [![reward](https://make.fun/badge/tiny-chess-01/Rudhay863/tiny-chess-01-v2/reward.svg)](https://make.fun/bounty/tiny-chess-01?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
 
-A fresh, fast tiny chess engine for the [make.fun](https://make.fun) bounty `tiny-chess-01` ($500). Written from scratch in Python 3.13 stdlib only — readable source is `src/bot.py`, and `main.py` is its packed entrypoint (`makefun compress`, 3,131 bytes, under the 4,096-byte limit).
+A fresh, fast tiny chess engine for the [make.fun](https://make.fun) bounty `tiny-chess-01` ($500). Written from scratch in Python 3.13 stdlib only — readable source is `src/bot.py`, and `main.py` is its packed entrypoint (`makefun compress`, 3,125 bytes, under the 4,096-byte limit).
 
 - 0x88 board, negamax alpha-beta with iterative deepening, quiescence (captures + check evasions), transposition table, MVV-LVA + killer/history move ordering, material + piece-square evaluation, and game-history threefold-repetition handling (a move that would repeat a position a third time scores as a draw).
-- Fixed 100,000-node budget per move (no wall clock anywhere) — deterministic and replay-safe, so it cannot time out the way the first submission did.
+- Fixed 150,000-node budget per move (no wall clock anywhere) — deterministic and replay-safe, so it cannot time out the way the first submission did.
 - Speaks the harness env protocol over HTTP (`MAKEFUN_ENV_URL`).
 
 ## Local trial results (kit level 18, practice trials, measured 2026-11-17)
 
-- Trial 0 (the practice grade): **Elo 1,364** — 3 wins, 1 draw, 2 losses (W vs depth-2, W vs depth-3, W vs depth-4, D vs nodes-100k, L vs nodes-250k, L vs nodes-500k). Practice floor is 1,154 — clears it by 210.
-- Trials 0–2 combined: 9.5/18 points, ≈ Elo 1,300 (trial 1: 1,279; trial 2: 1,279).
+- Trial 0 (the practice grade): **Elo 1,451** — 3 wins, 2 draws, 1 loss (W vs depth-2, W vs depth-3, D vs depth-4, W vs nodes-100k, L vs nodes-250k, D vs nodes-500k). Practice floor is 1,154 — clears it by 297.
+- Trials 0–2 combined at the earlier 100,000-node budget: 9.5/18 points, ≈ Elo 1,300 (trial 1: 1,279; trial 2: 1,279); trials 1–2 not re-run after the budget change.
 - Perft verified (startpos, Kiwipete and 4 tricky positions, depths 1–3) — all correct, including en passant, castling and promotions.
 
 ## Play
